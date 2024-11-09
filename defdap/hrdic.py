@@ -33,6 +33,7 @@ from defdap import defaults
 from defdap.plotting import MapPlot, GrainPlot
 from defdap.inspector import GrainInspector
 from defdap.utils import reportProgress
+from defdap.utils import Datastore
 
 
 class Map(base.Map):
@@ -101,6 +102,22 @@ class Map(base.Map):
         Max shear component np.sqrt(((e11 - e22) / 2.)**2 + e12**2).
     cropDists : numpy.ndarray
         Crop distances (default all zeros).
+
+    data : defdap.utils.Datastore
+        Must contain after loading data (maps):
+            coordinate : numpy.ndarray
+                X and Y coordinates
+            displacement : numpy.ndarray
+                X and Y displacements
+        Generated data:
+            f : numpy.ndarray
+                Components of the deformation gradient (0=x, 1=y).
+            e : numpy.ndarray
+                Components of the green strain (0=x, 1=y).
+            max_shear : numpy.ndarray
+                Max shear component np.sqrt(((e11 - e22) / 2.)**2 + e12**2).
+        Derived data:
+            Grain list data to map data from all grains
 
     """
     def __init__(self, path, fname, dataType=None):

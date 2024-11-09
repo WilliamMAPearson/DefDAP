@@ -22,7 +22,7 @@ from defdap.plotting import Plot, MapPlot, GrainPlot
 
 from skimage.measure import profile_line
 
-from defdap.utils import reportProgress
+from defdap.utils import reportProgress, Datastore
 
 
 class Map(object):
@@ -51,6 +51,8 @@ class Map(object):
 
         self.grainPlot = None
         self.profilePlot = None
+
+        self.data = Datastore(crop_func=self.crop)
 
     def __len__(self):
         return len(self.grainList)
